@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Car & Rocketry — Oren Pipano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .project-hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-muted); margin-bottom: 36px; transition: color var(--transition); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+    .back-link:hover { color: var(--ink); }
+    .project-eyebrow { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .project-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5.5vw, 64px); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px; }
+    .project-subtitle { font-size: 19px; color: var(--ink-muted); font-weight: 300; line-height: 1.7; max-width: 680px; margin-bottom: 32px; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .content-section { padding: 64px 0 72px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 0; }
+    .project-sub-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; }
+    .sub-card-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .sub-card-title { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.01em; margin-bottom: 16px; }
+    .sub-card-body p { font-size: 16px; color: var(--ink-muted); font-weight: 300; line-height: 1.75; margin-bottom: 16px; }
+    .sub-card-body p strong { color: var(--ink); font-weight: 500; }
+    .sub-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .wip-banner { background: #FFF8E7; border: 1px solid #F0D98A; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 40px; display: flex; gap: 14px; align-items: center; font-size: 15px; color: #92610A; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Oren Pipano</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="project-hero">
+    <div class="container">
+      <a href="index.html#projects" class="back-link fade-in">← Back to Projects</a>
+      <p class="project-eyebrow fade-in">Active Build · UVA Engineering Teams · 2025–Present</p>
+      <h1 class="project-h1 fade-in">Solar Car &<br>Rocketry</h1>
+      <p class="project-subtitle fade-in">Two concurrent UVA engineering team projects: designing carbon fiber aerobody geometry for the Solar Car Team, and building air-brake systems for the Rocketry Team's IREC competition rocket.</p>
+      <div class="meta-row fade-in">
+        <span class="project-badge badge-engineering">Active Build</span>
+        <span class="project-badge badge-design">Aerodynamics</span>
+        <span class="project-badge badge-research">Competition</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="wip-banner">
+        <span>🔧</span>
+        <span>Both projects are actively in development. CAD models, test data, and build documentation will be added as work progresses.</span>
+      </div>
+      <div class="two-col">
+        <div class="project-sub-card">
+          <div class="sub-card-label">UVA Solar Car Team · Aero-Body Subteam</div>
+          <div class="sub-card-title">Solar Car Aerobody</div>
+          <div class="sub-card-body">
+            <p>Contributing to the design and fabrication of the solar car's <strong>carbon fiber body shell</strong> — optimizing external geometry for aerodynamic drag reduction and structural performance under race conditions.</p>
+            <p>Work involves CFD-informed shape iteration, composite layup planning, and coordination with the chassis and electrical subteams to ensure the body integrates cleanly with all subsystems.</p>
+            <p>The car competes in multi-day solar racing events, where aerodynamic efficiency directly determines race performance.</p>
+          </div>
+          <div class="sub-card-tags">
+            <span class="tag">Carbon Fiber</span>
+            <span class="tag">Aerodynamics</span>
+            <span class="tag">SOLIDWORKS</span>
+            <span class="tag">Composite Layup</span>
+            <span class="tag">CFD</span>
+          </div>
+        </div>
+
+        <div class="project-sub-card">
+          <div class="sub-card-label">UVA Rocketry Team · Air-Brakes Subteam</div>
+          <div class="sub-card-title">Rocket Air-Brakes</div>
+          <div class="sub-card-body">
+            <p>Designing the <strong>air-brake deployment system</strong> for UVA's competition rocket in preparation for the International Rocket Engineering Competition (IREC).</p>
+            <p>Air brakes are drag-inducing fins that deploy during ascent to bleed off velocity and hit a precise target altitude. The system requires real-time actuation based on onboard sensor data, balancing structural loads at high dynamic pressure.</p>
+            <p>Responsibilities include actuator mechanism design, bracket and deployment geometry, and integration with the flight computer.</p>
+          </div>
+          <div class="sub-card-tags">
+            <span class="tag">Fusion 360</span>
+            <span class="tag">Structural Analysis</span>
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">IREC</span>
+            <span class="tag">Flight Dynamics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-text">© 2026 Oren Pipano · Aerospace Engineering · UVA</span>
+    <a href="index.html#projects" class="footer-text" style="color: var(--accent);">← All Projects</a>
+  </footer>
+</body>
+</html>
