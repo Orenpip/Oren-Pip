@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oren Pipano — Aerospace Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F5F2;
+      --surface:   #FFFFFF;
+      --ink:       #1A1917;
+      --ink-muted: #6B6860;
+      --accent:    #1A4D8F;
+      --accent-lt: #EBF0F9;
+      --border:    #E2DED8;
+      --tag-bg:    #EDEBE7;
+      --radius:    6px;
+      --max:       1200px;
+      --transition: 0.22s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── LAYOUT ───────────────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+    section { padding: 80px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,245,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 28px;
+    }
+
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--ink-muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.05; letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-name em {
+      font-style: italic; color: var(--ink-muted);
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      font-size: 17px; font-weight: 300;
+      color: var(--ink-muted); line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--tag-bg); color: var(--ink-muted);
+      border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 100px;
+    }
+
+    .hero-cta {
+      display: flex; gap: 12px; align-items: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500;
+      padding: 10px 22px; border-radius: var(--radius);
+      transition: all var(--transition); cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent); color: #fff;
+    }
+    .btn-primary:hover { background: #163f75; }
+
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { background: var(--surface); border-color: var(--ink-muted); }
+
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 56px;
+      padding-top: 40px; border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px; letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 12px; color: var(--ink-muted);
+      font-weight: 400; margin-top: 2px;
+    }
+
+    /* ─── SECTION HEADERS ──────────────────────────────── */
+    .section-header {
+      display: flex; align-items: baseline;
+      gap: 16px; margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 30px; letter-spacing: -0.02em;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; color: var(--ink-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+
+    .about-text p {
+      color: var(--ink-muted); margin-bottom: 16px;
+      font-weight: 300; font-size: 15.5px;
+    }
+
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .edu-school {
+      font-weight: 500; font-size: 15px; margin-bottom: 4px;
+    }
+    .edu-degree {
+      font-size: 13px; color: var(--ink-muted); margin-bottom: 6px;
+    }
+    .edu-gpa {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; color: var(--accent);
+    }
+
+    /* ─── PROJECTS ─────────────────────────────────────── */
+    .projects-grid {
+      display: grid; gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all var(--transition);
+      position: relative; overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--accent);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover { border-color: #c8c4be; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .project-card:hover::before { transform: scaleY(1); }
+
+    .project-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px; letter-spacing: -0.01em;
+    }
+
+    .project-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--ink-muted);
+      letter-spacing: 0.06em; margin-top: 4px;
+    }
+
+    .project-badge {
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .badge-award { background: #FFF8E7; color: #92610A; border: 1px solid #F0D98A; }
+    .badge-research { background: #EBF0F9; color: var(--accent); border: 1px solid #C5D5ED; }
+    .badge-design { background: #F0EDF9; color: #5B3DB5; border: 1px solid #D0C5ED; }
+    .badge-engineering { background: #EDF9F0; color: #1A7A3F; border: 1px solid #B8E6C7; }
+    .badge-placeholder { background: var(--tag-bg); color: var(--ink-muted); border: 1px solid var(--border); }
+
+    .project-desc {
+      font-size: 14px; color: var(--ink-muted);
+      font-weight: 300; line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+      background: var(--tag-bg); color: var(--ink-muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px; border-radius: 4px;
+    }
+
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px;
+      font-size: 12px; font-weight: 500; color: var(--accent);
+      letter-spacing: 0.02em;
+      transition: gap var(--transition);
+    }
+    .project-link:hover { gap: 10px; }
+
+
+
+    /* ─── PUBLICATIONS ─────────────────────────────────── */
+    .pub-list { display: grid; gap: 16px; }
+
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex; gap: 24px;
+      align-items: flex-start;
+      transition: border-color var(--transition);
+    }
+    .pub-card:hover { border-color: #c8c4be; }
+
+    .pub-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--ink-muted);
+      margin-top: 3px; flex-shrink: 0;
+    }
+
+    .pub-title {
+      font-size: 14.5px; font-weight: 500;
+      margin-bottom: 6px; line-height: 1.4;
+    }
+
+    .pub-meta {
+      font-size: 12.5px; color: var(--ink-muted);
+      font-weight: 300; margin-bottom: 10px;
+    }
+
+    .pub-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── SKILLS ───────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .skill-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 14px;
+    }
+
+    .skill-items {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+
+    .skill-chip {
+      font-size: 12px; font-weight: 400;
+      background: var(--tag-bg); color: var(--ink);
+      border: 1px solid var(--border);
+      padding: 4px 11px; border-radius: 4px;
+    }
+
+    /* Awards */
+    .awards-list { display: grid; gap: 14px; margin-top: 32px; }
+
+    .award-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .award-icon {
+      font-size: 18px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    .award-name {
+      font-size: 14px; font-weight: 500; margin-bottom: 3px;
+    }
+
+    .award-org {
+      font-size: 12px; color: var(--ink-muted); font-weight: 300;
+    }
+
+    /* ─── CONTACT ──────────────────────────────────────── */
+    #contact { padding: 80px 0; }
+
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: start;
+    }
+
+    .contact-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .contact-sub {
+      font-size: 15px; color: var(--ink-muted);
+      font-weight: 300; margin-bottom: 28px; line-height: 1.65;
+    }
+
+    .contact-links { display: grid; gap: 12px; }
+
+    .contact-link-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px; font-weight: 500;
+      transition: all var(--transition);
+    }
+    .contact-link-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-lt);
+      color: var(--accent);
+    }
+
+    .contact-icon { font-size: 16px; }
+
+    .contact-detail {
+      font-size: 12px; color: var(--ink-muted); font-weight: 300;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--ink-muted); letter-spacing: 0.05em;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────── */
+
+    /* Prevent any horizontal overflow */
+    html, body { overflow-x: hidden; width: 100%; }
+
+    /* Fluid container */
+    .container { 
+      width: 100%; 
+      padding: 0 clamp(16px, 4vw, 28px); 
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      :root { --max: 100%; }
+      .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+      section { padding: 56px 0; }
+
+      .hero-name { font-size: clamp(36px, 10vw, 56px); }
+      .hero-desc { font-size: 15px; }
+
+      .hero-stats { 
+        gap: 20px; flex-wrap: wrap; 
+        padding-top: 28px; margin-top: 36px;
+      }
+      .stat-num { font-size: 22px; }
+
+      .hero-pills { gap: 8px; }
+      .pill { font-size: 10px; padding: 4px 10px; }
+
+      .nav-links { display: none; }
+
+      .project-top { flex-direction: column; gap: 8px; }
+      .project-badge { align-self: flex-start; }
+
+      .pub-card { flex-direction: column; gap: 8px; }
+      .pub-num { display: none; }
+
+      .hero-cta { flex-wrap: wrap; }
+      .btn { font-size: 13px; padding: 9px 18px; }
+
+      footer .container { flex-direction: column; gap: 6px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 16px; }
+      .section-title { font-size: 26px; }
+      .contact-heading { font-size: 26px; }
+      nav { padding: 14px 16px; }
+    }
+
+    /* ─── FADE IN ANIMATION ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp 0.55s ease forwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Oren Pipano</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow fade-in">Aerospace Engineering · UVA · Class of 2029</p>
+      <h1 class="hero-name fade-in">
+        Oren<br><em>Pipano</em>
+      </h1>
+      <p class="hero-desc fade-in">
+        First-year aerospace engineering student building at the intersection of software, hardware, and space systems. Published NASA researcher, competition award winner, and hands-on builder.
+      </p>
+      <div class="hero-pills fade-in">
+        <span class="pill">Aerospace Engineering</span>
+        <span class="pill">Machine Learning</span>
+        <span class="pill">CAD / Blender</span>
+        <span class="pill">Structural Design</span>
+        <span class="pill">Python · C#</span>
+        <span class="pill">Consulting</span>
+      </div>
+      <div class="hero-cta fade-in">
+        <a href="mailto:oren.pip@gmail.com" class="btn btn-primary">Get in Touch ↗</a>
+        <a href="https://ntrs.nasa.gov/citations/20240012868" target="_blank" class="btn btn-ghost">NASA Publication</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">01 —</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a <strong>first-year Aerospace Engineering student</strong> at the University of Virginia's School of Engineering & Applied Science, pursuing problems that sit at the edge of what's currently possible.
+          </p>
+          <p>
+            My work spans from <strong>NASA drone research</strong> to space station architectural design, machine learning competition models, and prosthetic limb development. I'm equally comfortable writing Python, modeling in Fusion 360, and presenting to a boardroom.
+          </p>
+          <p>
+            I grew up in Philadelphia, competed nationally in science fairs and coding challenges, and am now contributing to UVA's Solar Car Team, Rocketry Team, and CavaLimb prosthetics project simultaneously.
+          </p>
+          <p>
+            I'm interested in advanced propulsion, structural systems for long-duration spaceflight, and the application of AI to engineering design workflows.
+          </p>
+        </div>
+        <div class="about-edu">
+          <div class="edu-card">
+            <div class="edu-school">University of Virginia</div>
+            <div class="edu-degree">B.S. Aerospace Engineering · Expected May 2029<br>School of Engineering & Applied Science</div>
+            <div class="edu-gpa">GPA 3.72 · Dean's List · Excellence in Engineering Honoree</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-school">Friends Select School</div>
+            <div class="edu-degree">High School Diploma · Graduated May 2025<br>Philadelphia, Pennsylvania</div>
+            <div class="edu-gpa">GPA 4.17 · Cum Laude Society · 4× High Honors · AP Scholar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ──────────────────────────────────────── -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02 —</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <!-- ════════════════════════════════════════════════
+           TO ADD A NEW PROJECT: Copy one <div class="project-card"> block,
+           paste it below the last card (before the .project-add div),
+           and update the fields. Change badge class to one of:
+           badge-award / badge-research / badge-design / badge-engineering
+      ═══════════════════════════════════════════════════ -->
+      <div class="projects-grid">
+
+        <!-- PROJECT 1: Interstellar Gate -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">Interstellar Gate</div>
+              <div class="project-year">2025</div>
+            </div>
+            <span class="project-badge badge-design">Architectural Design</span>
+          </div>
+          <p class="project-desc">
+            A lunar-orbit space station designed as an interplanetary exchange hub for the urbanized future of space. Features a non-rotating axial spine for microgravity docking and logistics, and a segmented habitation ring using the Dzhanibekov Effect — four moving masses that can flip the station's orientation on demand to reposition docking ports. Designed for multi-class simultaneous traffic, contamination-controlled crew transfer, and compact launch folding.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Blender 3D</span>
+            <span class="tag">Space Architecture</span>
+            <span class="tag">Orbital Mechanics</span>
+            <span class="tag">Structural Design</span>
+            <span class="tag">Dzhanibekov Effect</span>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Deloitte Case Competition -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">Cape Cod National Park Analysis</div>
+              <div class="project-year">2026 · UVA × Deloitte</div>
+            </div>
+            <span class="project-badge badge-award">🥈 2nd Place</span>
+          </div>
+          <p class="project-desc">
+            Evaluated five East Coast candidates for elevation to National Park status on behalf of Jefferson Strategy Group at UVA's Deloitte First Year Case Competition. Built a quantitative evaluation model using LightGBM and XGBoost (R² ≥ 0.94) to score candidates across economic impact, demand, national significance, and visitor experience. Recommended Cape Cod National Seashore — which generates $5.75B in economic output, 3.5× the next candidate, and supports 5,385 local jobs.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">LightGBM</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Strategy Consulting</span>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: NASA Internship -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">NASA Search & Rescue Drone</div>
+              <div class="project-year">Summer 2024 · NASA Ames Research Center</div>
+            </div>
+            <span class="project-badge badge-research">Published Research</span>
+          </div>
+          <p class="project-desc">
+            As part of NASA's Aviation Concept Design Experience, designed a search-and-rescue drone optimized for storm-condition flight. Determined the optimal wing geometry for high-wind stability and integrated an AI pose estimation model alongside an AI voice-to-text model for autonomous victim detection. Presented findings to NASA professionals and co-authored a published technical memorandum on the NASA Technical Reports Server.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">AI / CV</span>
+            <span class="tag">Aerodynamics</span>
+            <span class="tag">Drone Design</span>
+            <span class="tag">Published</span>
+          </div>
+          <a href="https://ntrs.nasa.gov/citations/20240012868" target="_blank" class="project-link">
+            View on NASA TRS →
+          </a>
+        </div>
+
+        <!-- PROJECT 4: CavaLimb -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">CavaLimb — Prosthetic Arm</div>
+              <div class="project-year">2025–Present · UVA</div>
+            </div>
+            <span class="project-badge badge-engineering">Active Build</span>
+          </div>
+          <p class="project-desc">
+            Contributing to an interdisciplinary team developing a functional prosthetic arm. Specifically responsible for the design and mechanism of finger and hand movement — translating actuation inputs into natural, precise hand articulation. Combines mechanical design, servo systems, and embedded programming.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Mechanical Design</span>
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">CAD</span>
+            <span class="tag">Biomedical Engineering</span>
+          </div>
+        </div>
+
+        <!-- PROJECT 5: Solar Car & Rocketry -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">Solar Car · Rocketry Air-Brakes</div>
+              <div class="project-year">2025–Present · UVA Engineering Teams</div>
+            </div>
+            <span class="project-badge badge-engineering">Active Build</span>
+          </div>
+          <p class="project-desc">
+            On UVA's Solar Car Team, contributing to aerobody design and fabrication in carbon fiber — optimizing external geometry for drag reduction and structural performance. Concurrently, on the UVA Rocketry Team, designing air-brake systems for controlled altitude targeting in preparation for the International Rocket Engineering Competition (IREC).
+          </p>
+          <div class="project-tags">
+            <span class="tag">Carbon Fiber</span>
+            <span class="tag">Aerodynamics</span>
+            <span class="tag">SOLIDWORKS</span>
+            <span class="tag">Fusion 360</span>
+            <span class="tag">IREC</span>
+          </div>
+        </div>
+
+        <!-- PROJECT 6: AI Face Tracking -->
+        <div class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-title">AI Face-Tracking VR Gaming</div>
+              <div class="project-year">2025 · Published Research</div>
+            </div>
+            <span class="project-badge badge-research">Published</span>
+          </div>
+          <p class="project-desc">
+            Developed an artificial intelligence face-tracking system for a semi-virtual reality gaming experience. The system uses real-time computer vision to translate facial movements and expressions into in-game interactions, creating an immersive hybrid physical-virtual interface. Published in the Journal for Emerging Investigators.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Unity / C#</span>
+            <span class="tag">VR</span>
+            <span class="tag">Published</span>
+          </div>
+          <a href="https://doi.org/10.59720/24-204" target="_blank" class="project-link">
+            View Publication →
+          </a>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PUBLICATIONS ──────────────────────────────────── -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03 —</span>
+        <h2 class="section-title">Publications</h2>
+      </div>
+      <div class="pub-list">
+
+        <!-- ════════ TO ADD A PUBLICATION: Copy a pub-card block and update ════════ -->
+
+        <div class="pub-card">
+          <div class="pub-num">[1]</div>
+          <div>
+            <div class="pub-title">Search Technology for Optimal Rescue Missions</div>
+            <div class="pub-meta">Ingole, B., Michaels, O., Pipano, O., et al. · NASA Technical Reports Server · Aug. 1, 2024</div>
+            <a href="https://ntrs.nasa.gov/citations/20240012868" target="_blank" class="pub-link">ntrs.nasa.gov/citations/20240012868 ↗</a>
+          </div>
+        </div>
+
+        <div class="pub-card">
+          <div class="pub-num">[2]</div>
+          <div>
+            <div class="pub-title">Artificial Intelligence Face-Tracking for a Semi-Virtual Reality Gaming Experience</div>
+            <div class="pub-meta">Pipano, O., Pipano, V., Higgins, M. · Journal for Emerging Investigators · Dec. 22, 2025</div>
+            <a href="https://doi.org/10.59720/24-204" target="_blank" class="pub-link">doi.org/10.59720/24-204 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS & AWARDS ───────────────────────────────── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">04 —</span>
+        <h2 class="section-title">Skills &amp; Awards</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">Software & Code</div>
+          <div class="skill-items">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">C#</span>
+            <span class="skill-chip">JavaScript</span>
+            <span class="skill-chip">HTML / CSS</span>
+            <span class="skill-chip">Arduino</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">CAD & Engineering</div>
+          <div class="skill-items">
+            <span class="skill-chip">SOLIDWORKS</span>
+            <span class="skill-chip">Fusion 360</span>
+            <span class="skill-chip">Blender</span>
+            <span class="skill-chip">Ansys</span>
+            <span class="skill-chip">Carbon Fiber</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">ML & Data</div>
+          <div class="skill-items">
+            <span class="skill-chip">LightGBM</span>
+            <span class="skill-chip">XGBoost</span>
+            <span class="skill-chip">Computer Vision</span>
+            <span class="skill-chip">Excel</span>
+            <span class="skill-chip">Data Analysis</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Platforms</div>
+          <div class="skill-items">
+            <span class="skill-chip">Unity</span>
+            <span class="skill-chip">VR / AR</span>
+            <span class="skill-chip">ODE</span>
+            <span class="skill-chip">PowerPoint</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-items">
+            <span class="skill-chip">English (Native)</span>
+            <span class="skill-chip">Mandarin (Proficient)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Interests</div>
+          <div class="skill-items">
+            <span class="skill-chip">Robotics</span>
+            <span class="skill-chip">Metalsmithing</span>
+            <span class="skill-chip">Windsurfing</span>
+            <span class="skill-chip">Surfing</span>
+            <span class="skill-chip">Soccer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="awards-list">
+        <div class="award-item">
+          <div class="award-icon">🏆</div>
+          <div>
+            <div class="award-name">Excellence in Engineering Honoree</div>
+            <div class="award-org">Awarded to only 4 first-year students · University of Virginia · 2026</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥈</div>
+          <div>
+            <div class="award-name">Deloitte Consulting Case Competition — 2nd Place</div>
+            <div class="award-org">UVA × Deloitte · ML model to predict the next National Park · 2026</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥈</div>
+          <div>
+            <div class="award-name">Claude for Good Hackathon — 2nd Place, Student Success</div>
+            <div class="award-org">UVA McIntire School of Commerce · 2025 · Invited to work with University Dean</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥇</div>
+          <div>
+            <div class="award-name">George Washington Carver Science Fair — 1st Place, Computer Science</div>
+            <div class="award-org">2024</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🥈</div>
+          <div>
+            <div class="award-name">Congressional App Challenge — 2nd Place, 3rd Congressional District of PA</div>
+            <div class="award-org">2023</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🎖️</div>
+          <div>
+            <div class="award-name">The Rensselaer Mathematics and Science Medal</div>
+            <div class="award-org">2025</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">05 —</span>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="contact-inner">
+        <div>
+          <p class="contact-heading">Let's connect.</p>
+          <p class="contact-sub">
+            I'm always open to research collaborations, engineering projects, internship opportunities, or just a good conversation about aerospace and emerging technology.
+          </p>
+          <a href="mailto:oren.pip@gmail.com" class="btn btn-primary">Send an Email ↗</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:oren.pip@gmail.com" class="contact-link-item">
+            <span class="contact-icon">✉</span>
+            <div>
+              <div>oren.pip@gmail.com</div>
+              <div class="contact-detail">Personal Email</div>
+            </div>
+          </a>
+          <a href="mailto:vyz5ct@virginia.edu" class="contact-link-item">
+            <span class="contact-icon">🎓</span>
+            <div>
+              <div>vyz5ct@virginia.edu</div>
+              <div class="contact-detail">UVA Email</div>
+            </div>
+          </a>
+          <a href="tel:+12679682226" class="contact-link-item">
+            <span class="contact-icon">📱</span>
+            <div>
+              <div>(267) 968-2226</div>
+              <div class="contact-detail">Phone</div>
+            </div>
+          </a>
+          <!-- Update href below with your GitHub URL once you have it -->
+          <a href="https://github.com/" target="_blank" class="contact-link-item">
+            <span class="contact-icon">⌥</span>
+            <div>
+              <div>GitHub</div>
+              <div class="contact-detail">Update with your username</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+      <span class="footer-text">© 2026 Oren Pipano · Aerospace Engineering · UVA</span>
+      <span class="footer-text">Philadelphia, PA</span>
+    </div>
+  </footer>
+
+</body>
+</html>
