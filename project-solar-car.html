@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Car — Oren Pipano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .project-hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-muted); margin-bottom: 36px; transition: color var(--transition); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+    .back-link:hover { color: var(--ink); }
+    .project-eyebrow { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .project-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5.5vw, 64px); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px; }
+    .project-subtitle { font-size: 19px; color: var(--ink-muted); font-weight: 300; line-height: 1.7; max-width: 680px; margin-bottom: 32px; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .content-section { padding: 64px 0 72px; }
+    .intro-section { margin-bottom: 64px; }
+    .intro-text { font-size: 18px; color: var(--ink-muted); font-weight: 300; line-height: 1.8; max-width: 820px; margin-bottom: 20px; }
+    .intro-text strong { color: var(--ink); font-weight: 500; }
+    .role-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 48px; margin-bottom: 56px; }
+    .role-title { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.01em; margin-bottom: 24px; }
+    .responsibilities { display: grid; gap: 28px; }
+    .responsibility { padding-left: 32px; position: relative; }
+    .responsibility::before { content: ''; position: absolute; left: 0; top: 6px; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+    .resp-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+    .resp-desc { font-size: 15px; color: var(--ink-muted); font-weight: 300; line-height: 1.7; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 56px; }
+    .gallery-image { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; background: var(--surface); }
+    .gallery-image img { width: 100%; height: auto; display: block; }
+    .image-caption { font-size: 14px; color: var(--ink-muted); font-weight: 300; margin-top: 12px; text-align: center; }
+    .wip-banner { background: #FFF8E7; border: 1px solid #F0D98A; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 40px; display: flex; gap: 14px; align-items: center; font-size: 15px; color: #92610A; }
+    @media (max-width: 800px) { 
+      .role-section { padding: 32px; }
+      .image-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Oren Pipano</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="project-hero">
+    <div class="container">
+      <a href="index.html#projects" class="back-link fade-in">← Back to Projects</a>
+      <p class="project-eyebrow fade-in">Active Build · UVA Engineering · 2025–Present</p>
+      <h1 class="project-h1 fade-in">Solar Car Aerobody</h1>
+      <p class="project-subtitle fade-in">Leading the Aerobody and Composites Subteam at the University of Virginia's Solar Car Team — designing and fabricating lightweight, aerodynamically optimized carbon fiber structures for solar-powered racing vehicles.</p>
+      <div class="meta-row fade-in">
+        <span class="project-badge badge-engineering">Active Build</span>
+        <span class="project-badge badge-design">Aerodynamics</span>
+        <span class="project-badge badge-research">Leadership</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="intro-section">
+        <p class="intro-text">The <strong>Solar Car Team at UVA</strong> is an elite, student-led experiential learning initiative within the School of Engineering. The project focuses on designing, manufacturing, and racing highly optimized, street-legal vehicles powered entirely by sunlight. By transforming theoretical photovoltaic concepts into tangible engineering solutions, the team builds ultra-lightweight vehicles engineered to compete at endurance events like the national American Solar Challenge.</p>
+      </div>
+
+      <div class="role-section">
+        <h2 class="role-title">Aerobody & Composites Subteam Lead</h2>
+        <p style="font-size: 16px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 28px;">As the Aerobody and Composites Subteam Lead, I direct the mechanical division responsible for the vehicle's structural shell and aerodynamic efficiency. My technical contributions and leadership responsibilities include:</p>
+        
+        <div class="responsibilities">
+          <div class="responsibility">
+            <div class="resp-title">Aerodynamic Optimization</div>
+            <div class="resp-desc">Running complex Computational Fluid Dynamics (CFD) simulations to relentlessly lower the vehicle's drag coefficient and maximize overall energy efficiency.</div>
+          </div>
+          
+          <div class="responsibility">
+            <div class="resp-title">Advanced 3D Surface Modeling</div>
+            <div class="resp-desc">Overseeing the complete CAD development of the outer aeroshell to guarantee a flawless, high-tolerance fit over the internal chassis components.</div>
+          </div>
+          
+          <div class="responsibility">
+            <div class="resp-title">Composite Manufacturing</div>
+            <div class="resp-desc">Managing the hands-on shop operations for layout, vacuum bagging, and curing lightweight carbon fiber structures to minimize vehicle weight while maintaining rigorous structural safety standards.</div>
+          </div>
+
+          <div class="responsibility">
+            <div class="resp-title">Team Leadership</div>
+            <div class="resp-desc">Directing subteam operations, coordinating with other engineering divisions (chassis, electrical, drivetrain), and ensuring all components integrate seamlessly for competition-ready performance.</div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tag">SOLIDWORKS CAD</span>
+          <span class="tag">CFD Simulation</span>
+          <span class="tag">Carbon Fiber</span>
+          <span class="tag">Composite Manufacturing</span>
+          <span class="tag">Aerodynamics</span>
+          <span class="tag">Structural Analysis</span>
+          <span class="tag">Team Leadership</span>
+        </div>
+      </div>
+
+      <div class="wip-banner">
+        <span>🔧</span>
+        <span>Project is actively in development. CAD models, CFD results, and manufacturing documentation will be added as work progresses.</span>
+      </div>
+
+      <div class="image-gallery">
+        <!-- Add your solar car images here -->
+        <!-- Example structure: -->
+        <!-- <div class="gallery-image">
+          <img src="solar-car-01.jpg" alt="Solar car aerobody design">
+          <div class="image-caption">Aerobody design rendering</div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-text">© 2026 Oren Pipano · Aerospace Engineering · UVA</span>
+    <a href="index.html#projects" class="footer-text" style="color: var(--accent);">← All Projects</a>
+  </footer>
+</body>
+</html>
